@@ -14,6 +14,8 @@ To use this website the user only need to click the generate password button to 
 
 ## Link to Deployment
 
+[Link to deployment](https://twray95.github.io/passwordGenerator2/)
+
 ## Credits
 
 The base code for this project was forked from [this repo](https://github.com/coding-boot-camp/friendly-parakeet).
