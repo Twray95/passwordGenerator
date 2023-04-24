@@ -115,7 +115,7 @@ function passwordOptions() {
     return null;
   }
   //Prompt the user for how long they would like their password to be and autofill 12 to start.
-  const passLength = parseInt(prompt("How long should your password be?"), 12);
+  const passLength = parseInt(prompt("How long should your password be?"));
 
   //Conditional statement to check that password length follows the rules of a number, 8 or more, and 128 or less.
   if (Number.isNaN(passLength)) {
@@ -128,11 +128,58 @@ function passwordOptions() {
     alert("Password length can't be longer than 128 characters");
     return null;
   }
+
+  const optionsObject = {
+    passLength: passLength,
+    containsLoweCase: containsLoweCase,
+    containsUpperCase: containsUpperCase,
+    containsSpecialCharacters: containsSpecialCharacters,
+    containsNumbers: containsNumbers,
+  };
+  //return out the options.
+  return optionsObject;
+}
+
+function getRandomIndex(array) {
+  //Grabs random index position, Math.floor rounds down to the nearest whole number.  Math.random returns a random decimal between 0 and 1 and multiplies by array length to get a random array position.
+  const randomIndex = Math.floor(Math.random() * array.length);
+  //Grab the character at the random index position.
+  const randomCharacter = array[randomIndex];
+  //return out the random character.
+  return randomCharacter;
 }
 
 function generatePassword() {
+  //grab userInput from prompts
   const userInput = passwordOptions();
-  return userInput;
+  //array to push in character from the options selected.
+  let resultsArray = [];
+  //array to push the random characters into for final passwords.
+  const passwordArray = [];
+  //if statements to grab characters that the user wanted and push them into the results array.
+  if (userInput.containsLoweCase) {
+    resultsArray = resultsArray.concat(lowercaseChar);
+  }
+  if (userInput.containsUpperCase) {
+    resultsArray = resultsArray.concat(uppercaseChar);
+  }
+  if (userInput.containsSpecialCharacters) {
+    resultsArray = resultsArray.concat(specialCharacters);
+  }
+  if (userInput.containsNumbers) {
+    resultsArray = resultsArray.concat(possibleNumbers);
+  }
+
+  //grabs a random character and pushes it into the passwordArray for however long the password is supposed to be.
+  for (i = 0; i < userInput.passLength; i++) {
+    const characterPush = getRandomIndex(resultsArray);
+    passwordArray.push(characterPush);
+  }
+  console.log(userInput);
+  console.log(resultsArray);
+  console.log(passwordArray);
+  //return out the final password as a string.
+  return passwordArray.join("");
 }
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
