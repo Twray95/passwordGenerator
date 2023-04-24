@@ -1,24 +1,107 @@
 // Assignment code here
-function generatePassword() {
-  //String of possible characters for the password to choose from
-  const characters =
-    "01233456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  //length of the password, the for loop will iterate this many times.
-  const passwordLength = 8;
-  //temporary empty string that will have characters added to it.
-  let randomPassword = "";
+const specialCharacters = [
+  "@",
+  "%",
+  "+",
+  "\\",
+  "/",
+  "'",
+  "!",
+  "#",
+  "$",
+  "^",
+  "?",
+  ":",
+  ",",
+  ")",
+  "(",
+  "}",
+  "{",
+  "]",
+  "[",
+  "~",
+  "-",
+  "_",
+  ".",
+];
+const possibleNumbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+const lowercaseChar = [
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
+];
+const uppercaseChar = [
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+];
 
-  for (i = 0; i <= passwordLength; i++) {
-    //randomly select a character from the string of possible characters, Math.floor() will round the result down to the nearest whole number.  Math.random() creates a random decimal between 0 and 1 then is multiplied by the length of the string to get a random character placement.
-    const randomCharacter = Math.floor(Math.random() * characters.length);
-    //here we use the substring method to grab one character from the string and add it to the randomPassword value.
-    randomPassword += characters.substring(
-      randomCharacter,
-      randomCharacter + 1
-    );
+function passwordOptions() {
+  //Prompt the user for how long they would like their password to be and autofill 12 to start.
+  const passLength = parseInt(prompt("How long should your password be?"), 12);
+
+  //Conditional statement to check that password length follows the rules of a number, 8 or more, and 128 or less.
+  if (Number.isNaN(passLength)) {
+    alert("Password length must be a number");
+    return null;
+  } else if (passLength < 8) {
+    alert("Password must be at least 8 characters");
+    return null;
+  } else if (passLength > 128) {
+    alert("Password length can't be longer than 128 characters");
+    return null;
   }
-  //Once the for loop has finished the value of the randomPassword is returned out of the function.
-  return randomPassword;
+}
+
+function generatePassword() {
+  const userInput = passwordOptions();
+  return userInput;
 }
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
