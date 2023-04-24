@@ -1,28 +1,33 @@
 // Assignment code here
 const specialCharacters = [
-  "@",
-  "%",
-  "+",
-  "\\",
-  "/",
-  "'",
   "!",
   "#",
   "$",
-  "^",
-  "?",
-  ":",
-  ",",
-  ")",
+  "%",
+  "&",
   "(",
-  "}",
-  "{",
-  "]",
-  "[",
-  "~",
+  ")",
+  "*",
+  "+",
+  ",",
   "-",
   "_",
-  ".",
+  "/",
+  ";",
+  ":",
+  "<",
+  ">",
+  "=",
+  "?",
+  "@",
+  "[",
+  "]",
+  "^",
+  "`",
+  "{",
+  "}",
+  "|",
+  "~",
 ];
 const possibleNumbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 const lowercaseChar = [
@@ -83,6 +88,32 @@ const uppercaseChar = [
 ];
 
 function passwordOptions() {
+  //returns boolean for each option of character type.
+  const containsSpecialCharacters = confirm(
+    "Would you like your password to contain special characters?"
+  );
+
+  const containsNumbers = confirm(
+    "Would you like your password to contain numbers?"
+  );
+
+  const containsLoweCase = confirm(
+    "Would you like your password to contain lowercase characters?"
+  );
+
+  const containsUpperCase = confirm(
+    "Would you like your password to contain uppercase characters"
+  );
+  //check to make sure at least one character type is present.
+  if (
+    containsSpecialCharacters == false &&
+    containsNumbers == false &&
+    containsLoweCase == false &&
+    containsUpperCase == false
+  ) {
+    alert("Password must contain at least one character type!");
+    return null;
+  }
   //Prompt the user for how long they would like their password to be and autofill 12 to start.
   const passLength = parseInt(prompt("How long should your password be?"), 12);
 
